@@ -22,6 +22,24 @@ neoForge {
         client {
             client()
         }
+        client_1 {
+            client()
+            ideName = "Client 1"
+            gameDirectory = project.layout.projectDirectory.dir('runs/client_1')
+            programArguments.addAll "--username", "Dev1"
+        }
+        client_2 {
+            client()
+            ideName = "Client 2"
+            gameDirectory = project.layout.projectDirectory.dir('runs/client_2')
+            programArguments.addAll "--username", "Dev2"
+        }
+        client_3 {
+            client()
+            ideName = "Client 3"
+            gameDirectory = project.layout.projectDirectory.dir('runs/client_3')
+            programArguments.addAll "--username", "Dev3"
+        }
         data {
             data()
         }
