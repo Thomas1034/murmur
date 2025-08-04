@@ -22,18 +22,16 @@ public class Murmur implements ModInitializer {
 
         // Use Fabric to bootstrap the Common mod.
         CommonClass.init();
-        ClientReceiveMessageEvents.CHAT.register((Component component, @Nullable PlayerChatMessage chatMessage, @Nullable GameProfile profile, ChatType.Bound direction, Instant time) -> {
+        ClientReceiveMessageEvents.ALLOW_CHAT.register((Component component, @Nullable PlayerChatMessage chatMessage, @Nullable GameProfile profile, ChatType.Bound direction, Instant time) -> {
             if (chatMessage != null) {
                 boolean anySucceeded = false;
                 String message = chatMessage.decoratedContent().getString();
                 for (MurmurContext<?> context : MurmurContext.CONTEXTS) {
                     anySucceeded |= context.receiveMessage(message);
                 }
-                if (anySucceeded) {
-                    // TODO Figure out how to cancel events.
-                    // event.setCanceled(true);
-                }
+                return !anySucceeded;
             }
+            return true;
         });
     }
 }

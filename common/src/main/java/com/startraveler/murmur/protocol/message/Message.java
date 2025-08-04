@@ -2,6 +2,8 @@ package com.startraveler.murmur.protocol.message;
 
 import com.startraveler.murmur.registry.CodecRegistry;
 
+import java.util.UUID;
+
 public interface Message<T extends MessageBody> {
 
     CodecRegistry.CodecRegistryEntry<? extends Message<? extends MessageBody>> getVersion();
@@ -9,5 +11,7 @@ public interface Message<T extends MessageBody> {
     T body();
 
     String mod();
+
+    UUID sender();
 
 }

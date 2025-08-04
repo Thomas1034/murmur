@@ -1,15 +1,16 @@
-package com.startraveler.murmur.api.message;
+package com.startraveler.murmur.api.example.message;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.startraveler.murmur.registry.CodecRegistry;
 import com.startraveler.murmur.protocol.message.MessageBody;
+import com.startraveler.murmur.registry.CodecRegistry;
 
-public record ExampleMessageBody(int a, int b) implements MessageBody {
+public record ExampleMessageBody(int x, int y, int z) implements MessageBody {
     public static final MapCodec<ExampleMessageBody> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            Codec.INT.fieldOf("a").forGetter(ExampleMessageBody::a),
-            Codec.INT.fieldOf("b").forGetter(ExampleMessageBody::b)
+            Codec.INT.fieldOf("x").forGetter(ExampleMessageBody::x),
+            Codec.INT.fieldOf("y").forGetter(ExampleMessageBody::y),
+            Codec.INT.fieldOf("z").forGetter(ExampleMessageBody::z)
     ).apply(instance, ExampleMessageBody::new));
 
     @Override
